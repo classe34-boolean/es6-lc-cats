@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container-float::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.float-left{
+  display: flex;
+  justify-content: center;
+  float: left;
+  width: 50%;
+  border: grey 1px solid;
+}
+
+.float-left > div {
+  padding: 30px;
+}
+
+#container, #container-new {
+  display: flex;
+  justify-content: center;
+}
+
+#container > div,
+#container-new > div {
+  padding: 30px;
+  text-align: center;
+}
+
+.fa-cat {
+  font-size: 80px;
+}
