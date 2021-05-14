@@ -42,18 +42,21 @@ const cats = [
 const container = document.getElementById("container");
 const maleContainer = document.getElementById("male");
 const femaleContainer = document.getElementById("female");
+const containerNew = document.getElementById("container-new");
 const pink = "#FFC0CB";
 const blue = "#0000ff";
 
 const newCats = cats.map(
     (element) => {
 
-        let ribbonColor = "";
-        if (element.gender == "male") {
-            ribbonColor = blue;
-        } else {
-            ribbonColor = pink;
-        }
+        // let ribbonColor = "";
+        // if (element.gender == "male") {
+        //     ribbonColor = blue;
+        // } else {
+        //     ribbonColor = pink;
+        // }
+
+        let ribbonColor = (element.gender == "male") ? blue : pink;
 
         const newCat = {
             ...element,
@@ -127,3 +130,57 @@ femaleCats.forEach(
 // femmina e poi tutti i gattini maschio, inserendo
 // solamente nome e colore e colore e opacità del
 // fiocco per ogni gatto.
+
+// const orderedCats = [];
+
+// for (var i = 0; i < femaleCats.length; i++) {
+//     orderedCats.push(femaleCats[i]);
+// }
+// for (var i = 0; i < maleCats.length; i++) {
+//     orderedCats.push(maleCats[i]);
+// }
+
+const orderedCats = [...femaleCats, ...maleCats];
+
+// console.log(orderedCats);
+
+const finalCats = orderedCats.map(
+    (element) => {
+
+        // const newElement = {
+        //     name: element.name,
+        //     color: element.color,
+        //     ribbon: element.ribbon
+        // };
+
+        // destrutturazione
+        // const { name, color, ribbon } = element;
+        // const newElement = {
+        //     name,
+        //     color,
+        //     ribbon
+        // };
+
+        // destrutturazione
+        const { age, gender, ...newElement } = element;
+        // console.log(age);
+        // console.log(gender);
+        // console.log(newElement);
+
+        return newElement;
+    }
+);
+console.log(finalCats);
+
+finalCats.forEach(
+    (element) => {
+        const { name, color, ribbon } = element;
+
+        containerNew.innerHTML += `<div>
+            <i class="fas fa-cat" style="color: ${color}"></i>
+            <i class="fas fa-ribbon" style="color: ${ribbon.color}; opacity: ${ribbon.opacity}%"></i>
+            <h2>${name}</h2>
+        </div>
+        `;
+    }
+);
